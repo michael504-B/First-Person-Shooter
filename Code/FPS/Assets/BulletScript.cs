@@ -7,6 +7,9 @@ public class BulletScript : MonoBehaviour
     [SerializeField]
     float BulletLifeTime;
 
+    [SerializeField]
+    int bulletDmg = 1;
+
     float elapsed = 0;
 
     // Start is called before the first frame update
@@ -24,4 +27,14 @@ public class BulletScript : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void OnTriggerEnter(Collider Collider)
+    {
+        if (Collider.tag == "Target")
+        {
+            Collider.GetComponent<EnemyHP>().Hit(bulletDmg);
+        }
+    }
+
+    
 }
